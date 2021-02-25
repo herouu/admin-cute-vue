@@ -55,6 +55,30 @@ module.exports = {
       warnings: true,
       errors: true,
     },
+    proxy: {
+      '/vab-mock-server/monitor/job': {
+        target: 'http://101.200.79.90:8080/', // 真实环境
+        changeOrigin: true,
+        pathRewrite: {
+          '^/vab-mock-server': '',
+        },
+      },
+      '/vab-mock-server/system/': {
+        target: 'http://101.200.79.90:8080/', // 真实环境
+        changeOrigin: true,
+        pathRewrite: {
+          '^/vab-mock-server': '',
+        },
+      },
+      // '/vab-mock-server/menu': {
+      //   target: 'http://localhost:3000', // mock环境
+      //   changeOrigin: true,
+      //   pathRewrite: {
+      //     '^/merchant-gw/mock': '/merchant-mock',
+      //   },
+      // },
+
+    },
     after: mockServer(),
   },
   configureWebpack() {

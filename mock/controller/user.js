@@ -1,5 +1,7 @@
 const accessTokens = {
-  admin: 'admin-accessToken',
+  // admin: 'admin-accessToken',
+  admin:
+    'Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjE5OGJlYjQ4LWRiZTYtNDBmMC04NDVmLWMyNTUxMDVjMmNmNCJ9.auzSok5RXIM-bAnzVAOOxJVvEDgvnnuawrat3XniWUfUP9mrg1ejozg7KTbdW-VWEVhJiXjoGHV0f6We-pFSWA',
   editor: 'editor-accessToken',
   test: 'test-accessToken',
 }
@@ -35,7 +37,7 @@ module.exports = [
       return {
         code: 200,
         msg: 'success',
-        data: { accessToken },
+        data: { Authorization: accessToken },
       }
     },
   },

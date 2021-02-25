@@ -1,9 +1,9 @@
 import request from '@/utils/request'
 
-export function getRouterList(data) {
+export function getRouterList(params) {
   return request({
-    url: '/menu/navigate',
-    method: 'post',
-    data,
+    url: 'getRouters',
+    method: 'get',
+    params,
   })
 }

@@ -18,7 +18,7 @@ const setting = {
       ? 'vab-mock-server'
       : 'vab-mock-server',
   //标题 （包括初次加载雪花屏的标题 页面的标题 浏览器的标题）
-  title: 'vue-admin-beautiful',
+  title: 'vue-admin-cute',
   //简写
   abbreviation: 'vab',
   //开发环境端口号
@@ -40,7 +40,7 @@ const setting = {
   //加载时显示文字
   loadingText: '正在加载中...',
   //token名称
-  tokenName: 'accessToken',
+  tokenName: 'Authorization',
   //token在localStorage、sessionStorage存储的key的名称
   tokenTableName: 'vue-admin-beautiful',
   //token存储位置localStorage sessionStorage
@@ -56,7 +56,7 @@ const setting = {
   //是否开启登录RSA加密
   loginRSA: false,
   //intelligence和all两种方式，前者后端权限只控制permissions不控制view文件的import（前后端配合，减轻后端工作量），all方式完全交给后端前端只负责加载
-  authentication: 'intelligence',
+  authentication: 'all',
   //vertical布局时是否只保持一个子菜单的展开
   uniqueOpened: true,
   //vertical布局时默认展开的菜单path，使用逗号隔开建议只展开一个
