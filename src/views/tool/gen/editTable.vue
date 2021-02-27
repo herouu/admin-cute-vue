@@ -2,7 +2,7 @@
   <el-card>
     <el-tabs v-model="activeName">
       <el-tab-pane label="基本信息" name="basic">
-        <basic-info-form ref="basicInfo" :info="info" />
+        <basic-info-form ref="basicInfo" :parent-info="info" />
       </el-tab-pane>
       <el-tab-pane label="字段信息" name="cloum">
         <el-table
@@ -148,7 +148,7 @@
       <el-tab-pane label="生成信息" name="genInfo">
         <gen-info-form
           ref="genInfo"
-          :info="info"
+          :parent-info="info"
           :tables="tables"
           :menus="menus"
         />

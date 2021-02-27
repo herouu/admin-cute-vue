@@ -251,7 +251,7 @@
     name: 'BasicInfoForm',
     components: { Treeselect },
     props: {
-      info: {
+      parentInfo: {
         type: Object,
         default: null,
       },
@@ -261,11 +261,12 @@
       },
       menus: {
         type: Array,
-        default: [],
+        default: null,
       },
     },
     data() {
       return {
+        info: this.parentInfo,
         subColumns: [],
         rules: {
           tplCategory: [

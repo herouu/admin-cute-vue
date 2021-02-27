@@ -10,7 +10,7 @@ import '@/utils/errorLog';
 import './vabIcon';
 
 import Vab from '@/utils/vab';
-import VabPermissions from 'zx-layouts/Permissions';
+// import VabPermissions from 'zx-layouts/Permissions';
 
 Vue.use(Vab);
-Vue.use(VabPermissions);
+// Vue.use(VabPermissions);

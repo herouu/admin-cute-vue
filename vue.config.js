@@ -17,13 +17,13 @@ const {
   build7z,
   donation,
 } = require('./src/config');
-const {
-  webpackBarName,
-  webpackBanner,
-  donationConsole,
-} = require('zx-layouts');
+// const {
+//   webpackBarName,
+//   webpackBanner,
+//   donationConsole,
+// } = require('zx-layouts');
 
-if (donation) donationConsole();
+// if (donation) donationConsole();
 const { version, author } = require('./package.json');
 const Webpack = require('webpack');
 const WebpackBar = require('webpackbar');
@@ -110,9 +110,9 @@ module.exports = {
       },
       plugins: [
         new Webpack.ProvidePlugin(providePlugin),
-        new WebpackBar({
-          name: webpackBarName,
-        }),
+        // new WebpackBar({
+        //   name: webpackBarName,
+        // }),
       ],
     };
   },
@@ -123,8 +123,8 @@ module.exports = {
       .rule('svg')
       .exclude.add(resolve('src/remixIcon'))
       .add(resolve('src/colorfulIcon'))
+      .add(resolve('src/assets/icons'))
       .end();
-
     config.module
       .rule('remixIcon')
       .test(/\.svg$/)
@@ -191,10 +191,10 @@ module.exports = {
           },
         },
       });
-      config
-        .plugin('banner')
-        .use(Webpack.BannerPlugin, [`${webpackBanner}${time}`])
-        .end();
+      // config
+      //   .plugin('banner')
+      //   .use(Webpack.BannerPlugin, [`${webpackBanner}${time}`])
+      //   .end();
       config.module
         .rule('images')
         .use('image-webpack-loader')

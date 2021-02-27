@@ -34,13 +34,14 @@
   export default {
     name: 'BasicInfoForm',
     props: {
-      info: {
+      parentInfo: {
         type: Object,
         default: null,
       },
     },
     data() {
       return {
+        info: this.parentInfo,
         rules: {
           tableName: [
             { required: true, message: '请输入表名称', trigger: 'blur' },
