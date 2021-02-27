@@ -84,6 +84,14 @@ module.exports = {
           '^/vab-mock-server': '',
         },
       },
+      '/vab-mock-server/getRouter': {
+        // target: 'http://101.200.79.90:8080/', // 真实环境
+        target: 'http://192.168.0.104:8080/', // 真实环境
+        changeOrigin: true,
+        pathRewrite: {
+          '^/vab-mock-server': '',
+        },
+      },
       '/vab-mock-server/userInfo': {
         target: 'http://192.168.0.104:8080/', // 真实环境
         changeOrigin: true,
