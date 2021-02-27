@@ -14,15 +14,15 @@
   </div>
 </template>
 <script>
-  import { mapGetters } from 'vuex'
-  import { logo } from '@/config'
+  import { mapGetters } from 'vuex';
+  import { logo } from '@/config';
 
   export default {
     name: 'VabLogo',
     data() {
       return {
         title: this.$baseTitle,
-      }
+      };
     },
     computed: {
       ...mapGetters({
@@ -30,7 +30,7 @@
         layout: 'settings/layout',
       }),
     },
-  }
+  };
 </script>
 <style lang="scss" scoped>
   @mixin container {

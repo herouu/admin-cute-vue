@@ -12,21 +12,21 @@
     data() {
       return {
         list: this.getBreadcrumb(),
-      }
+      };
     },
     watch: {
       $route() {
-        this.list = this.getBreadcrumb()
+        this.list = this.getBreadcrumb();
       },
     },
     methods: {
       getBreadcrumb() {
         return this.$route.matched.filter(
           (item) => item.name && item.meta.title
-        )
+        );
       },
     },
-  }
+  };
 </script>
 
 <style lang="scss" scoped>

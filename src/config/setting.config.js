@@ -71,5 +71,5 @@ const setting = {
   templateFolder: 'project',
   //是否显示终端donation打印
   donation: false,
-}
-module.exports = setting
+};
+module.exports = setting;

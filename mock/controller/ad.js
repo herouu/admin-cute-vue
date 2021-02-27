@@ -7,7 +7,7 @@ const data = [
     title: 'vue-admin-beautiful（antdv） vue3.0版本已发布，点我提前体验',
     url: 'https://chu1204505056.gitee.io/vue-admin-beautiful-mini/#/index',
   },
-]
+];
 module.exports = [
   {
     url: '/ad/getList',
@@ -17,7 +17,7 @@ module.exports = [
         code: 200,
         msg: 'success',
         data,
-      }
+      };
     },
   },
-]
+];

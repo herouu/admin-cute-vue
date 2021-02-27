@@ -107,12 +107,12 @@
     name: 'More',
     components: {},
     data() {
-      return { nodeEnv: process.env.NODE_ENV }
+      return { nodeEnv: process.env.NODE_ENV };
     },
     created() {},
     mounted() {},
     methods: {},
-  }
+  };
 </script>
 <style lang="scss" scoped>
   .more-container {

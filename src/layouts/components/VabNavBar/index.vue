@@ -36,14 +36,14 @@
 </template>
 
 <script>
-  import { mapActions, mapGetters } from 'vuex'
+  import { mapActions, mapGetters } from 'vuex';
 
   export default {
     name: 'VabNavBar',
     data() {
       return {
         pulse: false,
-      }
+      };
     },
     computed: {
       ...mapGetters({
@@ -58,17 +58,17 @@
         changeCollapse: 'settings/changeCollapse',
       }),
       handleCollapse() {
-        this.changeCollapse()
+        this.changeCollapse();
       },
       async refreshRoute() {
-        this.$baseEventBus.$emit('reload-router-view')
-        this.pulse = true
+        this.$baseEventBus.$emit('reload-router-view');
+        this.pulse = true;
         setTimeout(() => {
-          this.pulse = false
-        }, 1000)
+          this.pulse = false;
+        }, 1000);
       },
     },
-  }
+  };
 </script>
 
 <style lang="scss" scoped>

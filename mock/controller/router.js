@@ -335,13 +335,13 @@ const data = [
       },
     ],
   },
-]
+];
 module.exports = [
   {
     url: '/getRouters',
     type: 'get',
     response() {
-      return { code: 200, msg: 'success', data: data }
+      return { code: 200, msg: 'success', data: data };
     },
   },
-]
+];

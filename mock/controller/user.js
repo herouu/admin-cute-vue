@@ -1,10 +1,10 @@
 const accessTokens = {
   // admin: 'admin-accessToken',
   admin:
-    'Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjE5OGJlYjQ4LWRiZTYtNDBmMC04NDVmLWMyNTUxMDVjMmNmNCJ9.auzSok5RXIM-bAnzVAOOxJVvEDgvnnuawrat3XniWUfUP9mrg1ejozg7KTbdW-VWEVhJiXjoGHV0f6We-pFSWA',
+    'Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6IjJhNDdkZGE3LTBjYmMtNDdkOC1iZmFjLWNiMDZmM2RjM2VmNSJ9.dCsYm2ojcJn3L53Q5MeI5eWEgBAknUuNTWWgZMaKeqFO041DcULDWzBmhpCbT2C3j0-EAiPr9vQOZhaj3dohhg',
   editor: 'editor-accessToken',
   test: 'test-accessToken',
-}
+};
 
 module.exports = [
   {
@@ -19,26 +19,26 @@ module.exports = [
           publicKey:
             'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBT2vr+dhZElF73FJ6xiP181txKWUSNLPQQlid6DUJhGAOZblluafIdLmnUyKE8mMHhT3R+Ib3ssZcJku6Hn72yHYj/qPkCGFv0eFo7G+GJfDIUeDyalBN0QsuiE/XzPHJBuJDfRArOiWvH0BXOv5kpeXSXM8yTt5Na1jAYSiQ/wIDAQAB',
         },
-      }
+      };
     },
   },
   {
     url: '/login',
     type: 'post',
     response(config) {
-      const { username } = config.body
-      const accessToken = accessTokens[username]
+      const { username } = config.body;
+      const accessToken = accessTokens[username];
       if (!accessToken) {
         return {
           code: 500,
           msg: '帐户或密码不正确。',
-        }
+        };
       }
       return {
         code: 200,
         msg: 'success',
         data: { Authorization: accessToken },
-      }
+      };
     },
   },
   {
@@ -48,27 +48,27 @@ module.exports = [
       return {
         code: 200,
         msg: '模拟注册成功',
-      }
+      };
     },
   },
   {
     url: '/userInfo',
     type: 'post',
     response(config) {
-      const { accessToken } = config.body
-      let permissions = ['admin']
-      let username = 'admin'
+      const { accessToken } = config.body;
+      let permissions = ['admin'];
+      let username = 'admin';
       if ('admin-accessToken' === accessToken) {
-        permissions = ['admin']
-        username = 'admin'
+        permissions = ['admin'];
+        username = 'admin';
       }
       if ('editor-accessToken' === accessToken) {
-        permissions = ['editor']
-        username = 'editor'
+        permissions = ['editor'];
+        username = 'editor';
       }
       if ('test-accessToken' === accessToken) {
-        permissions = ['admin', 'editor']
-        username = 'test'
+        permissions = ['admin', 'editor'];
+        username = 'test';
       }
       return {
         code: 200,
@@ -81,7 +81,7 @@ module.exports = [
             'https://i.gtimg.cn/club/item/face/img/8/15918_100.gif',
           ],
         },
-      }
+      };
     },
   },
   {
@@ -91,7 +91,7 @@ module.exports = [
       return {
         code: 200,
         msg: 'success',
-      }
+      };
     },
   },
-]
+];

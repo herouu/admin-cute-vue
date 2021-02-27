@@ -3,13 +3,13 @@
  * @description router全局配置，如有必要可分文件抽离
  */
 
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Layout from '@/layouts'
-import EmptyLayout from '@/layouts/EmptyLayout'
-import { publicPath, routerMode } from '@/config'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Layout from '@/layouts';
+import EmptyLayout from '@/layouts/EmptyLayout';
+import { publicPath, routerMode } from '@/config';
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 export const constantRoutes = [
   {
@@ -34,7 +34,7 @@ export const constantRoutes = [
     component: () => import('@/views/404'),
     hidden: true,
   },
-]
+];
 
 /*当settings.js里authentication配置的是intelligence时，views引入交给前端配置*/
 export const asyncRoutes = [
@@ -61,7 +61,7 @@ export const asyncRoutes = [
     redirect: '/404',
     hidden: true,
   },
-]
+];
 
 const router = new VueRouter({
   base: routerMode === 'history' ? publicPath : '',
@@ -70,7 +70,7 @@ const router = new VueRouter({
     y: 0,
   }),
   routes: constantRoutes,
-})
+});
 //注释的地方是允许路由重复点击，如果你觉得框架路由跳转规范太过严格可选择放开
 /* const originalPush = VueRouter.prototype.push;
 VueRouter.prototype.push = function push(location, onResolve, onReject) {
@@ -87,7 +87,7 @@ export function resetRouter() {
       y: 0,
     }),
     routes: constantRoutes,
-  }).matcher
+  }).matcher;
 }
 
-export default router
+export default router;

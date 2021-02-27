@@ -3,7 +3,7 @@
  * @description cli配置
  */
 
-const path = require('path')
+const path = require('path');
 const {
   publicPath,
   assetsDir,
@@ -16,29 +16,33 @@ const {
   providePlugin,
   build7z,
   donation,
-} = require('./src/config')
-const { webpackBarName, webpackBanner, donationConsole } = require('zx-layouts')
+} = require('./src/config');
+const {
+  webpackBarName,
+  webpackBanner,
+  donationConsole,
+} = require('zx-layouts');
 
-if (donation) donationConsole()
-const { version, author } = require('./package.json')
-const Webpack = require('webpack')
-const WebpackBar = require('webpackbar')
-const FileManagerPlugin = require('filemanager-webpack-plugin')
-const dayjs = require('dayjs')
-const date = dayjs().format('YYYY_M_D')
-const time = dayjs().format('YYYY-M-D HH:mm:ss')
-const productionGzipExtensions = ['html', 'js', 'css', 'svg']
-process.env.VUE_APP_TITLE = title || 'vue-admin-beautiful'
-process.env.VUE_APP_AUTHOR = author || 'chuzhixin 1204505056@qq.com'
-process.env.VUE_APP_UPDATE_TIME = time
-process.env.VUE_APP_VERSION = version
+if (donation) donationConsole();
+const { version, author } = require('./package.json');
+const Webpack = require('webpack');
+const WebpackBar = require('webpackbar');
+const FileManagerPlugin = require('filemanager-webpack-plugin');
+const dayjs = require('dayjs');
+const date = dayjs().format('YYYY_M_D');
+const time = dayjs().format('YYYY-M-D HH:mm:ss');
+const productionGzipExtensions = ['html', 'js', 'css', 'svg'];
+process.env.VUE_APP_TITLE = title || 'vue-admin-beautiful';
+process.env.VUE_APP_AUTHOR = author || 'chuzhixin 1204505056@qq.com';
+process.env.VUE_APP_UPDATE_TIME = time;
+process.env.VUE_APP_VERSION = version;
 
-const resolve = (dir) => path.join(__dirname, dir)
+const resolve = (dir) => path.join(__dirname, dir);
 const mockServer = () => {
   if (process.env.NODE_ENV === 'development')
-    return require('./mock/mockServer.js')
-  else return ''
-}
+    return require('./mock/mockServer.js');
+  else return '';
+};
 
 module.exports = {
   publicPath,
@@ -56,28 +60,44 @@ module.exports = {
       errors: true,
     },
     proxy: {
-      '/vab-mock-server/monitor/job': {
-        target: 'http://101.200.79.90:8080/', // 真实环境
-        changeOrigin: true,
-        pathRewrite: {
-          '^/vab-mock-server': '',
-        },
-      },
       '/vab-mock-server/system/': {
-        target: 'http://101.200.79.90:8080/', // 真实环境
+        // target: 'http://101.200.79.90:8080/', // 真实环境
+        target: 'http://192.168.0.104:8080/', // 真实环境
         changeOrigin: true,
         pathRewrite: {
           '^/vab-mock-server': '',
         },
       },
-      // '/vab-mock-server/menu': {
-      //   target: 'http://localhost:3000', // mock环境
-      //   changeOrigin: true,
-      //   pathRewrite: {
-      //     '^/merchant-gw/mock': '/merchant-mock',
-      //   },
-      // },
-
+      '/vab-mock-server/monitor/': {
+        // target: 'http://101.200.79.90:8080/', // 真实环境
+        target: 'http://192.168.0.104:8080/', // 真实环境
+        changeOrigin: true,
+        pathRewrite: {
+          '^/vab-mock-server': '',
+        },
+      },
+      '/vab-mock-server/login': {
+        // target: 'http://101.200.79.90:8080/', // 真实环境
+        target: 'http://192.168.0.104:8080/', // 真实环境
+        changeOrigin: true,
+        pathRewrite: {
+          '^/vab-mock-server': '',
+        },
+      },
+      '/vab-mock-server/userInfo': {
+        target: 'http://192.168.0.104:8080/', // 真实环境
+        changeOrigin: true,
+        pathRewrite: {
+          '^/vab-mock-server': '',
+        },
+        '/vab-mock-server/job/': {
+          target: 'http://192.168.0.104:8080/', // 真实环境
+          changeOrigin: true,
+          pathRewrite: {
+            '^/vab-mock-server': '',
+          },
+        },
+      },
     },
     after: mockServer(),
   },
@@ -94,16 +114,16 @@ module.exports = {
           name: webpackBarName,
         }),
       ],
-    }
+    };
   },
   chainWebpack(config) {
-    config.plugins.delete('preload')
-    config.plugins.delete('prefetch')
+    config.plugins.delete('preload');
+    config.plugins.delete('prefetch');
     config.module
       .rule('svg')
       .exclude.add(resolve('src/remixIcon'))
       .add(resolve('src/colorfulIcon'))
-      .end()
+      .end();
 
     config.module
       .rule('remixIcon')
@@ -113,7 +133,7 @@ module.exports = {
       .use('svg-sprite-loader')
       .loader('svg-sprite-loader')
       .options({ symbolId: 'remix-icon-[name]' })
-      .end()
+      .end();
 
     config.module
       .rule('colorfulIcon')
@@ -123,14 +143,26 @@ module.exports = {
       .use('svg-sprite-loader')
       .loader('svg-sprite-loader')
       .options({ symbolId: 'colorful-icon-[name]' })
-      .end()
+      .end();
 
-    /*  config.when(process.env.NODE_ENV === "development", (config) => {
-      config.devtool("source-map");
-    }); */
+    config.module
+      .rule('icons')
+      .test(/\.svg$/)
+      .include.add(resolve('src/assets/icons'))
+      .end()
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader')
+      .options({
+        symbolId: 'icon-[name]',
+      })
+      .end();
+
+    config.when(process.env.NODE_ENV === 'development', (config) => {
+      config.devtool('source-map');
+    });
     config.when(process.env.NODE_ENV !== 'development', (config) => {
-      config.performance.set('hints', false)
-      config.devtool('none')
+      config.performance.set('hints', false);
+      config.devtool('none');
       config.optimization.splitChunks({
         chunks: 'all',
         cacheGroups: {
@@ -150,12 +182,19 @@ module.exports = {
             priority: 20,
             test: /[\\/]node_modules[\\/]_?@fortawesome(.*)/,
           },
+          commons: {
+            name: 'chunk-commons',
+            test: resolve('src/components'), // can customize your rules
+            minChunks: 3, //  minimum common number
+            priority: 5,
+            reuseExistingChunk: true,
+          },
         },
-      })
+      });
       config
         .plugin('banner')
         .use(Webpack.BannerPlugin, [`${webpackBanner}${time}`])
-        .end()
+        .end();
       config.module
         .rule('images')
         .use('image-webpack-loader')
@@ -163,8 +202,8 @@ module.exports = {
         .options({
           bypassOnDebug: true,
         })
-        .end()
-    })
+        .end();
+    });
 
     if (build7z) {
       config.when(process.env.NODE_ENV === 'production', (config) => {
@@ -183,8 +222,8 @@ module.exports = {
               },
             },
           ])
-          .end()
-      })
+          .end();
+      });
     }
   },
   runtimeCompiler: true,
@@ -199,16 +238,16 @@ module.exports = {
 
         /*sass-loader 9.0写法，感谢github用户 shaonialife*/
         additionalData(content, loaderContext) {
-          const { resourcePath, rootContext } = loaderContext
-          const relativePath = path.relative(rootContext, resourcePath)
+          const { resourcePath, rootContext } = loaderContext;
+          const relativePath = path.relative(rootContext, resourcePath);
           if (
             relativePath.replace(/\\/g, '/') !== 'src/styles/variables.scss'
           ) {
-            return '@import "~@/styles/variables.scss";' + content
+            return '@import "~@/styles/variables.scss";' + content;
           }
-          return content
+          return content;
         },
       },
     },
   },
-}
+};
