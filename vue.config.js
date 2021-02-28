@@ -60,7 +60,7 @@ module.exports = {
       errors: true,
     },
     proxy: {
-      '/vab-mock-server/system/': {
+      '/vab-mock-server/': {
         // target: 'http://101.200.79.90:8080/', // 真实环境
         target: 'http://192.168.0.104:8080/', // 真实环境
         changeOrigin: true,
