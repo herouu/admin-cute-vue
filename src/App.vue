@@ -1,5 +1,5 @@
 <template>
-  <div id="vue-admin-beautiful">
+  <div id="vue-admin-cute">
     <router-view />
   </div>
 </template>

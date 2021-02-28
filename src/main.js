@@ -60,7 +60,7 @@ Vue.component('Pagination', Pagination);
 Vue.component('RightToolbar', RightToolbar);
 Vue.use(permission);
 new Vue({
-  el: '#vue-admin-beautiful',
+  el: '#vue-admin-cute',
   router,
   store,
   render: (h) => h(App),
