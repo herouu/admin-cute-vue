@@ -15,15 +15,8 @@ const {
   devPort,
   providePlugin,
   build7z,
-  donation,
 } = require('./src/config');
-// const {
-//   webpackBarName,
-//   webpackBanner,
-//   donationConsole,
-// } = require('zx-layouts');
 
-// if (donation) donationConsole();
 const { version, author } = require('./package.json');
 const Webpack = require('webpack');
 const WebpackBar = require('webpackbar');
@@ -62,48 +55,10 @@ module.exports = {
     proxy: {
       '/vab-mock-server/': {
         // target: 'http://101.200.79.90:8080/', // 真实环境
-        target: 'http://192.168.0.104:8080/', // 真实环境
+        target: 'http://localhost:8080/', // 真实环境
         changeOrigin: true,
         pathRewrite: {
           '^/vab-mock-server': '',
-        },
-      },
-      '/vab-mock-server/monitor/': {
-        // target: 'http://101.200.79.90:8080/', // 真实环境
-        target: 'http://192.168.0.104:8080/', // 真实环境
-        changeOrigin: true,
-        pathRewrite: {
-          '^/vab-mock-server': '',
-        },
-      },
-      '/vab-mock-server/login': {
-        // target: 'http://101.200.79.90:8080/', // 真实环境
-        target: 'http://192.168.0.104:8080/', // 真实环境
-        changeOrigin: true,
-        pathRewrite: {
-          '^/vab-mock-server': '',
-        },
-      },
-      '/vab-mock-server/getRouter': {
-        // target: 'http://101.200.79.90:8080/', // 真实环境
-        target: 'http://192.168.0.104:8080/', // 真实环境
-        changeOrigin: true,
-        pathRewrite: {
-          '^/vab-mock-server': '',
-        },
-      },
-      '/vab-mock-server/userInfo': {
-        target: 'http://192.168.0.104:8080/', // 真实环境
-        changeOrigin: true,
-        pathRewrite: {
-          '^/vab-mock-server': '',
-        },
-        '/vab-mock-server/job/': {
-          target: 'http://192.168.0.104:8080/', // 真实环境
-          changeOrigin: true,
-          pathRewrite: {
-            '^/vab-mock-server': '',
-          },
         },
       },
     },
@@ -118,9 +73,9 @@ module.exports = {
       },
       plugins: [
         new Webpack.ProvidePlugin(providePlugin),
-        // new WebpackBar({
-        //   name: webpackBarName,
-        // }),
+        new WebpackBar({
+          name: 'vue-admin-cute',
+        }),
       ],
     };
   },
@@ -199,10 +154,10 @@ module.exports = {
           },
         },
       });
-      // config
-      //   .plugin('banner')
-      //   .use(Webpack.BannerPlugin, [`${webpackBanner}${time}`])
-      //   .end();
+      config
+        .plugin('banner')
+        .use(Webpack.BannerPlugin, [`${time}`])
+        .end();
       config.module
         .rule('images')
         .use('image-webpack-loader')

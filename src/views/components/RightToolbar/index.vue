@@ -57,7 +57,7 @@
       },
       columns: {
         type: Array,
-        default: () => [],
+        default: null,
       },
     },
     data() {
