@@ -158,14 +158,14 @@ module.exports = {
         .plugin('banner')
         .use(Webpack.BannerPlugin, [`${time}`])
         .end();
-      config.module
-        .rule('images')
-        .use('image-webpack-loader')
-        .loader('image-webpack-loader')
-        .options({
-          bypassOnDebug: true,
-        })
-        .end();
+      // config.module
+      //   .rule('images')
+      //   .use('image-webpack-loader')
+      //   .loader('image-webpack-loader')
+      //   .options({
+      //     bypassOnDebug: true,
+      //   })
+      //   .end();
     });
 
     if (build7z) {
