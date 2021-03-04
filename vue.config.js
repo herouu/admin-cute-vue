@@ -53,12 +53,12 @@ module.exports = {
       errors: true,
     },
     proxy: {
-      '/vab-mock-server/': {
+      [process.env.VUE_APP_BASE_API]: {
         // target: 'http://101.200.79.90:8080/', // 真实环境
         target: 'http://localhost:8080/', // 真实环境
         changeOrigin: true,
         pathRewrite: {
-          '^/vab-mock-server': '',
+          ['^'+process.env.VUE_APP_BASE_API]: '',
         },
       },
     },
